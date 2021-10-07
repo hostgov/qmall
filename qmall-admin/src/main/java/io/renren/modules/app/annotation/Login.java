@@ -8,8 +8,6 @@
 
 package io.renren.modules.app.annotation;
 
-import java.lang.annotation.*;
-
 /**
  * app登录效验
  *
