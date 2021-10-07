@@ -16,6 +16,7 @@
 		<module>qmall-member</module>
 		<module>qmall-order</module>
 		<module>qmall-admin</module>
+		<module>qmall-common</module>
 	</modules>
 
 </project>
