@@ -16,9 +16,9 @@ class QmallProductApplicationTests {
 	@Test
 	void contextLoads() {
 		BrandEntity brandEntity = new BrandEntity();
-		brandEntity.setName("报哪个好");
+		brandEntity.setName("报哪个好!!!!!!!");
 		brandService.save(brandEntity);
-		System.out.println("保存成功");
+		System.out.println("保存成功.......................");
 	}
 
 }
