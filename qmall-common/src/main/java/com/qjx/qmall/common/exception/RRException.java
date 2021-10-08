@@ -6,7 +6,7 @@
  * 版权所有，侵权必究！
  */
 
-package com.qjx.common.exception;
+package com.qjx.qmall.common.exception;
 
 /**
  * 自定义异常

@@ -1,19 +1,16 @@
 package com.qjx.qmall.product.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
+import com.qjx.qmall.common.utils.PageUtils;
+import com.qjx.qmall.common.utils.R;
 import com.qjx.qmall.product.entity.AttrEntity;
 import com.qjx.qmall.product.service.AttrService;
-import com.qjx.common.utils.PageUtils;
-import com.qjx.common.utils.R;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+import java.util.Map;
 
 
 
@@ -24,6 +21,7 @@ import com.qjx.common.utils.R;
  * @email zmryanq@gmail.com
  * @date 2021-10-07 17:23:27
  */
+@Api(tags = "商品属性管理")
 @RestController
 @RequestMapping("product/attr")
 public class AttrController {
@@ -33,6 +31,7 @@ public class AttrController {
     /**
      * 列表
      */
+    @ApiOperation("商品属性列表")
     @RequestMapping("/list")
     //@RequiresPermissions("product:attr:list")
     public R list(@RequestParam Map<String, Object> params){

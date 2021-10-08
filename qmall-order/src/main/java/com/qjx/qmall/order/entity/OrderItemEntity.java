@@ -1,105 +1,91 @@
 package com.qjx.qmall.order.entity;
 
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-
 import java.math.BigDecimal;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
-import java.util.Date;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
+ * <p>
  * 订单项信息
- * 
- * @author hostgov
- * @email zmryanq@gmail.com
- * @date 2021-10-07 20:10:03
+ * </p>
+ *
+ * @author Hostgov
+ * @since 2021-10-08
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 @TableName("oms_order_item")
+@ApiModel(value="OrderItemEntity对象", description="订单项信息")
 public class OrderItemEntity implements Serializable {
-	private static final long serialVersionUID = 1L;
 
-	/**
-	 * id
-	 */
-	@TableId
-	private Long id;
-	/**
-	 * order_id
-	 */
-	private Long orderId;
-	/**
-	 * order_sn
-	 */
-	private String orderSn;
-	/**
-	 * spu_id
-	 */
-	private Long spuId;
-	/**
-	 * spu_name
-	 */
-	private String spuName;
-	/**
-	 * spu_pic
-	 */
-	private String spuPic;
-	/**
-	 * 品牌
-	 */
-	private String spuBrand;
-	/**
-	 * 商品分类id
-	 */
-	private Long categoryId;
-	/**
-	 * 商品sku编号
-	 */
-	private Long skuId;
-	/**
-	 * 商品sku名字
-	 */
-	private String skuName;
-	/**
-	 * 商品sku图片
-	 */
-	private String skuPic;
-	/**
-	 * 商品sku价格
-	 */
-	private BigDecimal skuPrice;
-	/**
-	 * 商品购买的数量
-	 */
-	private Integer skuQuantity;
-	/**
-	 * 商品销售属性组合（JSON）
-	 */
-	private String skuAttrsVals;
-	/**
-	 * 商品促销分解金额
-	 */
-	private BigDecimal promotionAmount;
-	/**
-	 * 优惠券优惠分解金额
-	 */
-	private BigDecimal couponAmount;
-	/**
-	 * 积分优惠分解金额
-	 */
-	private BigDecimal integrationAmount;
-	/**
-	 * 该商品经过优惠后的分解金额
-	 */
-	private BigDecimal realAmount;
-	/**
-	 * 赠送积分
-	 */
-	private Integer giftIntegration;
-	/**
-	 * 赠送成长值
-	 */
-	private Integer giftGrowth;
+    private static final long serialVersionUID = 1L;
+
+    @ApiModelProperty(value = "id")
+      @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
+
+    @ApiModelProperty(value = "order_id")
+    private Long orderId;
+
+    @ApiModelProperty(value = "order_sn")
+    private String orderSn;
+
+    @ApiModelProperty(value = "spu_id")
+    private Long spuId;
+
+    @ApiModelProperty(value = "spu_name")
+    private String spuName;
+
+    @ApiModelProperty(value = "spu_pic")
+    private String spuPic;
+
+    @ApiModelProperty(value = "品牌")
+    private String spuBrand;
+
+    @ApiModelProperty(value = "商品分类id")
+    private Long categoryId;
+
+    @ApiModelProperty(value = "商品sku编号")
+    private Long skuId;
+
+    @ApiModelProperty(value = "商品sku名字")
+    private String skuName;
+
+    @ApiModelProperty(value = "商品sku图片")
+    private String skuPic;
+
+    @ApiModelProperty(value = "商品sku价格")
+    private BigDecimal skuPrice;
+
+    @ApiModelProperty(value = "商品购买的数量")
+    private Integer skuQuantity;
+
+    @ApiModelProperty(value = "商品销售属性组合（JSON）")
+    private String skuAttrsVals;
+
+    @ApiModelProperty(value = "商品促销分解金额")
+    private BigDecimal promotionAmount;
+
+    @ApiModelProperty(value = "优惠券优惠分解金额")
+    private BigDecimal couponAmount;
+
+    @ApiModelProperty(value = "积分优惠分解金额")
+    private BigDecimal integrationAmount;
+
+    @ApiModelProperty(value = "该商品经过优惠后的分解金额")
+    private BigDecimal realAmount;
+
+    @ApiModelProperty(value = "赠送积分")
+    private Integer giftIntegration;
+
+    @ApiModelProperty(value = "赠送成长值")
+    private Integer giftGrowth;
+
 
 }

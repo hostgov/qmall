@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.qjx.qmall.product.entity.BrandEntity;
 import com.qjx.qmall.product.service.BrandService;
-import com.qjx.common.utils.PageUtils;
-import com.qjx.common.utils.R;
+import com.qjx.qmall.common.utils.PageUtils;
+import com.qjx.qmall.common.utils.R;
 
 
 

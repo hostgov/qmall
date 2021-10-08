@@ -1,7 +1,7 @@
 package com.qjx.qmall.ware.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.qjx.common.utils.PageUtils;
+import com.qjx.qmall.common.utils.PageUtils;
 import com.qjx.qmall.ware.entity.WareInfoEntity;
 
 import java.util.Map;

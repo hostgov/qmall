@@ -1,4 +1,4 @@
-package com.qjx.common.xss;
+package com.qjx.qmall.common.xss;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;

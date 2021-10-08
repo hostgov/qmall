@@ -1,53 +1,51 @@
 package com.qjx.qmall.order.entity;
 
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-
 import java.math.BigDecimal;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
-import java.util.Date;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
+ * <p>
  * 退款信息
- * 
- * @author hostgov
- * @email zmryanq@gmail.com
- * @date 2021-10-07 20:10:03
+ * </p>
+ *
+ * @author Hostgov
+ * @since 2021-10-08
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 @TableName("oms_refund_info")
+@ApiModel(value="RefundInfoEntity对象", description="退款信息")
 public class RefundInfoEntity implements Serializable {
-	private static final long serialVersionUID = 1L;
 
-	/**
-	 * id
-	 */
-	@TableId
-	private Long id;
-	/**
-	 * 退款的订单
-	 */
-	private Long orderReturnId;
-	/**
-	 * 退款金额
-	 */
-	private BigDecimal refund;
-	/**
-	 * 退款交易流水号
-	 */
-	private String refundSn;
-	/**
-	 * 退款状态
-	 */
-	private Integer refundStatus;
-	/**
-	 * 退款渠道[1-支付宝，2-微信，3-银联，4-汇款]
-	 */
-	private Integer refundChannel;
-	/**
-	 * 
-	 */
-	private String refundContent;
+    private static final long serialVersionUID = 1L;
+
+    @ApiModelProperty(value = "id")
+      @TableId(value = "id", type = IdType.AUTO)
+    private Long id;
+
+    @ApiModelProperty(value = "退款的订单")
+    private Long orderReturnId;
+
+    @ApiModelProperty(value = "退款金额")
+    private BigDecimal refund;
+
+    @ApiModelProperty(value = "退款交易流水号")
+    private String refundSn;
+
+    @ApiModelProperty(value = "退款状态")
+    private Integer refundStatus;
+
+    @ApiModelProperty(value = "退款渠道[1-支付宝，2-微信，3-银联，4-汇款]")
+    private Integer refundChannel;
+
+    private String refundContent;
+
 
 }

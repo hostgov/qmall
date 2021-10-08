@@ -6,12 +6,12 @@
  * 版权所有，侵权必究！
  */
 
-package com.qjx.common.utils;
+package com.qjx.qmall.common.utils;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.qjx.common.xss.SQLFilter;
+import com.qjx.qmall.common.xss.SQLFilter;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.Map;
@@ -32,11 +32,11 @@ public class Query<T> {
         long curPage = 1;
         long limit = 10;
 
-        if(params.get(com.qjx.common.utils.Constant.PAGE) != null){
-            curPage = Long.parseLong((String)params.get(com.qjx.common.utils.Constant.PAGE));
+        if(params.get(Constant.PAGE) != null){
+            curPage = Long.parseLong((String)params.get(Constant.PAGE));
         }
-        if(params.get(com.qjx.common.utils.Constant.LIMIT) != null){
-            limit = Long.parseLong((String)params.get(com.qjx.common.utils.Constant.LIMIT));
+        if(params.get(Constant.LIMIT) != null){
+            limit = Long.parseLong((String)params.get(Constant.LIMIT));
         }
 
         //分页对象

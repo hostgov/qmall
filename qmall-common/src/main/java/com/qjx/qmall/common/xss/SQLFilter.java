@@ -6,9 +6,9 @@
  * 版权所有，侵权必究！
  */
 
-package com.qjx.common.xss;
+package com.qjx.qmall.common.xss;
 
-import com.qjx.common.exception.RRException;
+import com.qjx.qmall.common.exception.RRException;
 import org.apache.commons.lang.StringUtils;
 
 /**

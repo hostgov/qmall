@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.qjx.qmall.member.entity.MemberCollectSpuEntity;
 import com.qjx.qmall.member.service.MemberCollectSpuService;
-import com.qjx.common.utils.PageUtils;
-import com.qjx.common.utils.R;
+import com.qjx.qmall.common.utils.PageUtils;
+import com.qjx.qmall.common.utils.R;
 
 
 

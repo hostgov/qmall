@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.qjx.qmall.product.entity.SkuImagesEntity;
 import com.qjx.qmall.product.service.SkuImagesService;
-import com.qjx.common.utils.PageUtils;
-import com.qjx.common.utils.R;
+import com.qjx.qmall.common.utils.PageUtils;
+import com.qjx.qmall.common.utils.R;
 
 
 
