@@ -17,6 +17,8 @@
 		<module>qmall-order</module>
 		<module>qmall-admin</module>
 		<module>qmall-common</module>
+		<module>qmall-gateway</module>
+		<module>qmall-third-party</module>
 	</modules>
 
 </project>

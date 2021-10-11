@@ -8,6 +8,8 @@
 
 package io.renren.datasource.annotation;
 
+import java.lang.annotation.*;
+
 /**
  * 多数据源注解
  *

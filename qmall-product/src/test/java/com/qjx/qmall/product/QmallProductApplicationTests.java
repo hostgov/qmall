@@ -13,6 +13,9 @@ class QmallProductApplicationTests {
 	@Resource
 	BrandService brandService;
 
+
+
+
 	@Test
 	void contextLoads() {
 		BrandEntity brandEntity = new BrandEntity();

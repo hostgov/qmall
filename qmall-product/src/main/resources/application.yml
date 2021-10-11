@@ -8,6 +8,7 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+
   application:
     name: qmall-product
 mybatis-plus:
@@ -15,6 +16,11 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: auto #配置主键自增
+      logic-delete-value: 1
+      logic-not-delete-value: 0
 
 server:
   port: 10000
+logging:
+  level:
+    com.qjx.qmall: debug

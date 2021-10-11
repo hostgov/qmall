@@ -1,13 +1,13 @@
 package com.qjx.qmall.product.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>
@@ -39,6 +39,7 @@ public class CategoryEntity implements Serializable {
     private Integer catLevel;
 
     @ApiModelProperty(value = "是否显示[0-不显示，1显示]")
+    @TableLogic(value = "1", delval = "0")
     private Integer showStatus;
 
     @ApiModelProperty(value = "排序")
@@ -53,5 +54,8 @@ public class CategoryEntity implements Serializable {
     @ApiModelProperty(value = "商品数量")
     private Integer productCount;
 
+    @ApiModelProperty(value = "子分类列表,构造树形结构")
+    @TableField(exist = false)
+    private List<CategoryEntity> children;
 
 }

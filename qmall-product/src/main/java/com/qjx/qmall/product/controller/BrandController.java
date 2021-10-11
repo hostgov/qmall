@@ -1,19 +1,17 @@
 package com.qjx.qmall.product.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.qjx.qmall.product.entity.BrandEntity;
-import com.qjx.qmall.product.service.BrandService;
 import com.qjx.qmall.common.utils.PageUtils;
 import com.qjx.qmall.common.utils.R;
+import com.qjx.qmall.product.entity.BrandEntity;
+import com.qjx.qmall.product.service.BrandService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import java.util.Arrays;
+import java.util.Map;
 
 
 
@@ -25,9 +23,10 @@ import com.qjx.qmall.common.utils.R;
  * @date 2021-10-07 17:23:27
  */
 @RestController
+@Api(tags = "品牌表")
 @RequestMapping("product/brand")
 public class BrandController {
-    @Autowired
+    @Resource
     private BrandService brandService;
 
     /**
@@ -67,9 +66,11 @@ public class BrandController {
     /**
      * 修改
      */
-    @RequestMapping("/update")
-    //@RequiresPermissions("product:brand:update")
-    public R update(@RequestBody BrandEntity brand){
+    @ApiOperation(value = "修改品牌信息")
+    @PostMapping("/update")
+    public R update(
+            @ApiParam(value = "品牌对象必须有品牌id",required = true)
+            @RequestBody BrandEntity brand){
 		brandService.updateById(brand);
 
         return R.ok();
