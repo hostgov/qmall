@@ -7,13 +7,13 @@ For further reference, please consider the following sections:
 * [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.4.11/maven-plugin/reference/html/)
 * [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.4.11/maven-plugin/reference/html/#build-image)
 * [OpenFeign](https://docs.spring.io/spring-cloud-openfeign/docs/current/reference/html/)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/2.5.5/reference/htmlsingle/#boot-features-developing-web-applications)
+* [Spring Web](https://docs.spring.io/spring-boot/docs/2.5.5/reference/htmlsingle/#boot-features-developing-com.qjx.qmall.member.web-applications)
 
 ### Guides
 The following guides illustrate how to use some features concretely:
 
 * [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
+* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-com.qjx.qmall.member.web-content/)
 * [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
 
 ### Additional Links

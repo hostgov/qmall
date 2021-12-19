@@ -1,13 +1,16 @@
 package com.qjx.qmall.ware.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 /**
  * <p>
@@ -17,6 +20,8 @@ import lombok.EqualsAndHashCode;
  * @author Hostgov
  * @since 2021-10-08
  */
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("wms_ware_order_task_detail")
@@ -40,6 +45,13 @@ public class WareOrderTaskDetailEntity implements Serializable {
 
     @ApiModelProperty(value = "工作单id")
     private Long taskId;
+
+    @ApiModelProperty(value = "仓库id")
+    private Long wareId;
+
+
+    @ApiModelProperty(value = "锁定状态")
+    private Integer lockStatus;
 
 
 }

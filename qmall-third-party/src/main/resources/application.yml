@@ -14,4 +14,9 @@ spring:
 server:
   port: 30000
 
-
+clicksend:
+  sms:
+    username: zmryanq@gmail.com
+    password: Laizi8171!
+    from-phone-num: +61411111111
+    msg-tmp: Qmall.com verify Message.your verify code is {0}, expire in 15 minues. Test Message, please ignore.

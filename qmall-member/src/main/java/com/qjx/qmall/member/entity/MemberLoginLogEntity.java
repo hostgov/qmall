@@ -42,7 +42,7 @@ public class MemberLoginLogEntity implements Serializable {
     @ApiModelProperty(value = "city")
     private String city;
 
-    @ApiModelProperty(value = "登录类型[1-web，2-app]")
+    @ApiModelProperty(value = "登录类型[1-com.qjx.qmall.member.web，2-app]")
     private Integer loginType;
 
 

@@ -8,7 +8,7 @@
 
 package com.qjx.qmall.common.xss;
 
-import com.qjx.qmall.common.exception.RRException;
+import com.qjx.qmall.common.utils.RRException;
 import org.apache.commons.lang.StringUtils;
 
 /**

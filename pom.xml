@@ -19,6 +19,10 @@
 		<module>qmall-common</module>
 		<module>qmall-gateway</module>
 		<module>qmall-third-party</module>
+		<module>qmall-auth-server</module>
+		<module>qmall-cart</module>
+		<module>qmall-search</module>
+		<module>qmall-seckill</module>
 	</modules>
 
 </project>

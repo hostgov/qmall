@@ -1,20 +1,14 @@
 package com.qjx.qmall.member.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.qjx.qmall.member.entity.MemberLevelEntity;
-import com.qjx.qmall.member.service.MemberLevelService;
 import com.qjx.qmall.common.utils.PageUtils;
 import com.qjx.qmall.common.utils.R;
+import com.qjx.qmall.member.entity.MemberLevelEntity;
+import com.qjx.qmall.member.service.MemberLevelService;
+import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
+import java.util.Arrays;
+import java.util.Map;
 
 
 /**
@@ -27,7 +21,7 @@ import com.qjx.qmall.common.utils.R;
 @RestController
 @RequestMapping("member/memberlevel")
 public class MemberLevelController {
-    @Autowired
+    @Resource
     private MemberLevelService memberLevelService;
 
     /**

@@ -1,6 +1,12 @@
 package com.qjx.qmall.thirdparty;
 
+import ClickSend.Api.SmsApi;
+import ClickSend.ApiClient;
+import ClickSend.ApiException;
+import ClickSend.Model.SmsMessage;
+import ClickSend.Model.SmsMessageCollection;
 import com.aliyun.oss.OSSClient;
+import com.qjx.qmall.thirdparty.component.SmsComponent;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -8,12 +14,49 @@ import javax.annotation.Resource;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.Arrays;
+import java.util.List;
 
 @SpringBootTest
 class QmallThirdPartyApplicationTests {
 
 	@Resource
 	OSSClient ossClient;
+
+	@Resource
+	SmsComponent smsComponent;
+
+	@Test
+	public void testSendSms() {
+		smsComponent.sendSmsCode("+61416810777","8989");
+	}
+
+	@Test
+	public void sendSms() {
+		ApiClient defaultClient = new ApiClient();
+		defaultClient.setUsername("zmryanq@gmail.com");
+		defaultClient.setPassword("Laizi8171!");
+		SmsApi apiInstance = new SmsApi(defaultClient);
+
+		SmsMessage smsMessage=new SmsMessage();
+		smsMessage.body("your verify code is 8888, expire in 20 minutes");
+		smsMessage.to("+61416810777");
+		smsMessage.source("+61411111111");
+
+		List<SmsMessage> smsMessageList= Arrays.asList(smsMessage);
+		// SmsMessageCollection | SmsMessageCollection model
+		SmsMessageCollection smsMessages = new SmsMessageCollection();
+		smsMessages.messages(smsMessageList);
+		try {
+			String result = apiInstance.smsSendPost(smsMessages);
+			System.out.println(result);
+		} catch (ApiException e) {
+			System.err.println("Exception when calling SmsApi#smsSendPost");
+			e.printStackTrace();
+		}
+	}
+
+
 
 	@Test
 	public void upload() throws FileNotFoundException {

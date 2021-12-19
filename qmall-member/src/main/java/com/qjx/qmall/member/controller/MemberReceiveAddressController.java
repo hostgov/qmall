@@ -1,20 +1,15 @@
 package com.qjx.qmall.member.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.qjx.qmall.member.entity.MemberReceiveAddressEntity;
-import com.qjx.qmall.member.service.MemberReceiveAddressService;
 import com.qjx.qmall.common.utils.PageUtils;
 import com.qjx.qmall.common.utils.R;
+import com.qjx.qmall.member.entity.MemberReceiveAddressEntity;
+import com.qjx.qmall.member.service.MemberReceiveAddressService;
+import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -27,8 +22,14 @@ import com.qjx.qmall.common.utils.R;
 @RestController
 @RequestMapping("member/memberreceiveaddress")
 public class MemberReceiveAddressController {
-    @Autowired
+    @Resource
     private MemberReceiveAddressService memberReceiveAddressService;
+
+
+    @GetMapping("/{memberId}/address")
+    public List<MemberReceiveAddressEntity> getAddress(@PathVariable("memberId") Long memberId) {
+        return memberReceiveAddressService.getAddress(memberId);
+    }
 
     /**
      * 列表
@@ -46,7 +47,6 @@ public class MemberReceiveAddressController {
      * 信息
      */
     @RequestMapping("/info/{id}")
-    //@RequiresPermissions("member:memberreceiveaddress:info")
     public R info(@PathVariable("id") Long id){
 		MemberReceiveAddressEntity memberReceiveAddress = memberReceiveAddressService.getById(id);
 

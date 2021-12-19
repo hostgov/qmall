@@ -1,19 +1,15 @@
 package com.qjx.qmall.coupon.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.qjx.qmall.coupon.entity.SeckillSessionEntity;
-import com.qjx.qmall.coupon.service.SeckillSessionService;
 import com.qjx.qmall.common.utils.PageUtils;
 import com.qjx.qmall.common.utils.R;
+import com.qjx.qmall.coupon.entity.SeckillSessionEntity;
+import com.qjx.qmall.coupon.service.SeckillSessionService;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 
 
@@ -27,14 +23,19 @@ import com.qjx.qmall.common.utils.R;
 @RestController
 @RequestMapping("coupon/seckillsession")
 public class SeckillSessionController {
-    @Autowired
+    @Resource
     private SeckillSessionService seckillSessionService;
+
+    @GetMapping("latest3DaysSession")
+    public R getLatest3DaysSession() {
+        List<SeckillSessionEntity> sessions = seckillSessionService.getLatest3DaysSession();
+        return R.ok().setData(sessions);
+    }
 
     /**
      * 列表
      */
     @RequestMapping("/list")
-    //@RequiresPermissions("coupon:seckillsession:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = seckillSessionService.queryPage(params);
 
@@ -46,7 +47,6 @@ public class SeckillSessionController {
      * 信息
      */
     @RequestMapping("/info/{id}")
-    //@RequiresPermissions("coupon:seckillsession:info")
     public R info(@PathVariable("id") Long id){
 		SeckillSessionEntity seckillSession = seckillSessionService.getById(id);
 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qjx.qmall.member.dao.MemberSocialRelationDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.qjx.qmall.member.entity.MemberSocialRelationEntity" id="memberSocialRelationMap">
+        <result property="id" column="id"/>
+        <result property="memberId" column="member_id"/>
+        <result property="socialUid" column="social_uid"/>
+        <result property="accessToken" column="access_token"/>
+        <result property="expiresIn" column="expires_in"/>
+        <result property="tokenFrom" column="token_from"/>
+    </resultMap>
+
+
+</mapper>

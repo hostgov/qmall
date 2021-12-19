@@ -1,20 +1,15 @@
 package com.qjx.qmall.coupon.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.qjx.qmall.coupon.entity.SkuFullReductionEntity;
-import com.qjx.qmall.coupon.service.SkuFullReductionService;
+import com.qjx.qmall.common.to.SkuReductionTo;
 import com.qjx.qmall.common.utils.PageUtils;
 import com.qjx.qmall.common.utils.R;
+import com.qjx.qmall.coupon.entity.SkuFullReductionEntity;
+import com.qjx.qmall.coupon.service.SkuFullReductionService;
+import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
+import java.util.Arrays;
+import java.util.Map;
 
 
 /**
@@ -27,8 +22,16 @@ import com.qjx.qmall.common.utils.R;
 @RestController
 @RequestMapping("coupon/skufullreduction")
 public class SkuFullReductionController {
-    @Autowired
+    @Resource
     private SkuFullReductionService skuFullReductionService;
+
+
+    @PostMapping("/saveInfo")
+    public R saveInfo(@RequestBody SkuReductionTo skuReductionTo){
+        skuFullReductionService.saveSkuReduction(skuReductionTo);
+        return R.ok();
+    }
+
 
     /**
      * 列表

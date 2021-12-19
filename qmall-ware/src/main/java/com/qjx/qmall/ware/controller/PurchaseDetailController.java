@@ -1,20 +1,14 @@
 package com.qjx.qmall.ware.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.qjx.qmall.ware.entity.PurchaseDetailEntity;
-import com.qjx.qmall.ware.service.PurchaseDetailService;
 import com.qjx.qmall.common.utils.PageUtils;
 import com.qjx.qmall.common.utils.R;
+import com.qjx.qmall.ware.entity.PurchaseDetailEntity;
+import com.qjx.qmall.ware.service.PurchaseDetailService;
+import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
+import java.util.Arrays;
+import java.util.Map;
 
 
 /**
@@ -27,14 +21,13 @@ import com.qjx.qmall.common.utils.R;
 @RestController
 @RequestMapping("ware/purchasedetail")
 public class PurchaseDetailController {
-    @Autowired
+    @Resource
     private PurchaseDetailService purchaseDetailService;
 
     /**
      * 列表
      */
     @RequestMapping("/list")
-    //@RequiresPermissions("ware:purchasedetail:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = purchaseDetailService.queryPage(params);
 

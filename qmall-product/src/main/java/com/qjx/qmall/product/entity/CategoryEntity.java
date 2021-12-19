@@ -1,6 +1,7 @@
 package com.qjx.qmall.product.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -55,6 +56,7 @@ public class CategoryEntity implements Serializable {
     private Integer productCount;
 
     @ApiModelProperty(value = "子分类列表,构造树形结构")
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @TableField(exist = false)
     private List<CategoryEntity> children;
 
