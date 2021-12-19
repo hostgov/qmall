@@ -3,20 +3,8 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
-    alicloud:
-      access-key: LTAI5tK14G174nbYRjpvXnE1
-      secret-key: rgfuEdkSzl4FReTpRkwoghg9GeM4pv
-      oss:
-        endpoint: oss-ap-southeast-2.aliyuncs.com
-        bucket: gulimall-hostgov
+
   application:
     name: qmall-third-party
 server:
   port: 30000
-
-clicksend:
-  sms:
-    username: zmryanq@gmail.com
-    password: Laizi8171!
-    from-phone-num: +61411111111
-    msg-tmp: Qmall.com verify Message.your verify code is {0}, expire in 15 minues. Test Message, please ignore.
