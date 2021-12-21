@@ -32,6 +32,7 @@ pipeline {
             steps {
               container ('maven') {
                 withCredentials([string(credentialsId: "$SONAR_CREDENTIAL_ID", variable: 'SONAR_TOKEN')]) {
+                  sh "mvn clean install -Dmaven.test.skip=true"
                   sh "mvn sonar:sonar -gs `pwd`/mvn-setting.xml -Dsonar.branch=$BRANCH_NAME -Dsonar.login=$SONAR_TOKEN"
                 }
                 timeout(time: 1, unit: 'HOURS') {
