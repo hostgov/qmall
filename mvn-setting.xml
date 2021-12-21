@@ -1,0 +1,47 @@
+<settings>
+    <mirrors>
+        <!-- mirror
+         | Specifies a repository mirror site to use instead of a given repository. The repository that
+         | this mirror serves has an ID that matches the mirrorOf element of this mirror. IDs are used
+         | for inheritance and direct lookup purposes, and must be unique across the set of mirrors.
+         |
+        <mirror>
+          <id>mirrorId</id>
+          <mirrorOf>repositoryId</mirrorOf>
+          <name>Human Readable Name for this Mirror.</name>
+          <url>http://my.repository.com/repo/path</url>
+        </mirror>
+        -->
+
+        <!-- 中央仓库1 -->
+        <mirror>
+            <id>repo1</id>
+            <mirrorOf>central</mirrorOf>
+            <name>Maven Repository Switchboard</name>
+            <url>https://repo1.maven.org/maven2/</url>
+        </mirror>
+
+        <!-- 中央仓库2 -->
+
+        <mirror>
+            <id>nexus-aliyun</id>
+            <mirrorOf>central</mirrorOf>
+            <name>Nexus aliyun</name>
+            <url>https://maven.aliyun.com/nexus/content/groups/public</url>
+        </mirror>
+        <!-- <mirror>
+            <id>repo2</id>
+            <mirrorOf>central</mirrorOf>
+            <name>Maven Repository Switchboard</name>
+            <url>https://repo2.maven.org/maven2/</url>
+        </mirror>  -->
+        <!-- <mirror>
+          <id>aliyunmaven</id>
+          <mirrorOf>central</mirrorOf>
+          <name>aliyun maven</name>
+          <url>https://maven.aliyun.com/nexus/content/groups/public</url>
+        </mirror> -->
+
+    </mirrors>
+
+</settings>
