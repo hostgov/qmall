@@ -17,6 +17,7 @@ pipeline {
             DOCKERHUB_NAMESPACE = 'hostgov'
             GITHUB_ACCOUNT = 'hostgov'
             SONAR_CREDENTIAL_ID = 'sonar-qube'
+            RANCH_NAME = 'master'
     }
 
     stages {
