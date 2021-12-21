@@ -26,7 +26,7 @@ pipeline {
           git(credentialsId: 'github-id', url: 'https://github.com/hostgov/qmall.git', branch: 'master', changelog: true, poll: false)
           sh 'echo 正在构建 $PROJECT_NAME 版本号: $PROJECT_VERSION'
           container ('maven') {
-                    sh "mvn clean install -Dmaven.test.skip=true -gs `pwd`/mvn-settings.xml"
+                    sh "mvn clean install -Dmaven.test.skip=true -gs `pwd`/mvn-setting.xml"
           }
         }
       }
