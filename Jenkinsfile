@@ -25,6 +25,7 @@ pipeline {
         steps {
           git(credentialsId: 'github-id', url: 'https://github.com/hostgov/qmall.git', branch: 'master', changelog: true, poll: false)
           sh 'echo 正在构建 $PROJECT_NAME 版本号: $PROJECT_VERSION'
+          sh "mvn clean install -Dmaven.test.skip=true"
         }
       }
 
@@ -32,7 +33,6 @@ pipeline {
             steps {
               container ('maven') {
                 withCredentials([string(credentialsId: "$SONAR_CREDENTIAL_ID", variable: 'SONAR_TOKEN')]) {
-                  sh "mvn clean install -Dmaven.test.skip=true"
                   sh "mvn sonar:sonar -gs `pwd`/mvn-setting.xml -Dsonar.branch=$BRANCH_NAME -Dsonar.login=$SONAR_TOKEN"
                 }
                 timeout(time: 1, unit: 'HOURS') {
