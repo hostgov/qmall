@@ -25,9 +25,7 @@
 		<module>qmall-seckill</module>
 	</modules>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
 
 		<!-- Sonar -->
 		<!-- The destination file for the code coverage report has to be set to the same value
@@ -35,7 +33,7 @@
          the same report, so that, it will give the cross-module code coverage. -->
 		<sonar.jacoco.reportPaths>${PWD}/./target/jacoco.exec</sonar.jacoco.reportPaths>
 		<sonar.groovy.binaries>target/classes</sonar.groovy.binaries>
-	</properties>
+
 	<build>
 		<plugins>
 			<plugin>
