@@ -35,7 +35,7 @@ pipeline {
             steps {
               container ('maven') {
                 withCredentials([string(credentialsId: "$SONAR_CREDENTIAL_ID", variable: 'SONAR_TOKEN')]) {
-                  sh "mvn sonar:sonar -gs `pwd`/mvn-setting.xml -Dsonar.branch=$BRANCH_NAME -Dsonar.login=$SONAR_TOKEN"
+                            sh "mvn sonar:sonar -gs `pwd`/mvn-setting.xml -Dsonar.branch=$BRANCH_NAME -Dsonar.login=$SONAR_CREDENTIAL_ID"
                 }
                 timeout(time: 1, unit: 'HOURS') {
                   waitForQualityGate abortPipeline: true
