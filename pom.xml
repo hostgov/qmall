@@ -27,6 +27,7 @@
 
 
 
+	<properties>
 		<!-- Sonar -->
 		<!-- The destination file for the code coverage report has to be set to the same value
          in the parent pom and in each module pom. Then JaCoCo will add up information in
@@ -34,6 +35,7 @@
 		<sonar.jacoco.reportPaths>${PWD}/./target/jacoco.exec</sonar.jacoco.reportPaths>
 		<sonar.groovy.binaries>target/classes</sonar.groovy.binaries>
 
+	</properties>
 	<build>
 		<plugins>
 			<plugin>
