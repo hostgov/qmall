@@ -14,6 +14,7 @@ pipeline {
   environment {
             DOCKER_CREDENTIAL_ID = 'dockerhub-id'
             GITHUB_CREDENTIAL_ID = 'github-id'
+            GITHUB_CREDENTIAL_ID2 = 'github-id-token'
             KUBECONFIG_CREDENTIAL_ID = 'demo-kubeconfig'
             REGISTRY = 'docker.io'
             DOCKERHUB_NAMESPACE = 'hostgov'
@@ -89,11 +90,11 @@ pipeline {
           steps {
               container ('maven') {
                 input(id: 'release-image-with-tag', message: 'release image with tag?')
-                  withCredentials([usernamePassword(credentialsId: "$GITHUB_CREDENTIAL_ID", passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                  withCredentials([string(credentialsId: "$GITHUB_CREDENTIAL_ID2", variable: 'GIT_TOKEN')]) {
                     sh 'git config --global user.email "zmryanq@hotmail.com" '
-                    sh 'git config --global user.name "HOSTGOV" '
+                    sh 'git config --global user.name "hostgov" '
                     sh 'git tag -a $PROJECT_VERSION -m "$PROJECT_VERSION" '
-                    sh 'git push http://$GIT_USERNAME:$GIT_PASSWORD@github.com/$GITHUB_ACCOUNT/qmall.git --tags --ipv4'
+                    sh 'git push https://$GIT_TOKEN@github.com/$GITHUB_ACCOUNT/qmall.git --tags --ipv4'
                   }
                 sh 'docker tag  $REGISTRY/$DOCKERHUB_NAMESPACE/$PROJECT_NAME:SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER $REGISTRY/$DOCKERHUB_NAMESPACE/$PROJECT_NAME:$PROJECT_VERSION'
                 sh 'docker push  $REGISTRY/$DOCKERHUB_NAMESPACE/$PROJECT_NAME:$PROJECT_VERSION'
