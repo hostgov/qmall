@@ -76,7 +76,7 @@ pipeline {
     stage('deploy to k8s') {
           steps {
             input(id: 'deploy-to-dev', message: 'deploy to dev?')
-            kubernetesDeploy(configs: '$PROJECT_NAME/deploy/**', enableConfigSubstitution: true, kubeconfigId: "$KUBECONFIG_CREDENTIAL_ID")
+            kubernetesDeploy(configs: "$PROJECT_NAME/deploy/**", enableConfigSubstitution: true, kubeconfigId: "$KUBECONFIG_CREDENTIAL_ID")
           }
         }
 
