@@ -32,32 +32,74 @@ pipeline {
         }
       }
     }
+
     stage('sonarqube analysis') {
-      steps {
-        container ('maven') {
-          withCredentials([string(credentialsId: "$SONAR_CREDENTIAL_ID", variable: 'SONAR_TOKEN')]) {
-            withSonarQubeEnv('sonar') {
-             sh "mvn sonar:sonar -gs `pwd`/mvn-setting.xml -Dsonar.login=$SONAR_TOKEN"
+          steps {
+            container ('maven') {
+              withCredentials([string(credentialsId: "$SONAR_CREDENTIAL_ID", variable: 'SONAR_TOKEN')]) {
+                withSonarQubeEnv('sonar') {
+                 sh "mvn sonar:sonar -gs `pwd`/mvn-setting.xml -Dsonar.login=$SONAR_TOKEN"
+                }
+              }
+              timeout(time: 1, unit: 'HOURS') {
+                waitForQualityGate abortPipeline: true
+              }
             }
           }
-          timeout(time: 1, unit: 'HOURS') {
-            waitForQualityGate abortPipeline: true
-          }
         }
-      }
-    }
+
     stage ('build & push') {
-        steps {
-            container ('maven') {
-                sh 'mvn  -Dmaven.test.skip=true -gs `pwd`/mvn-setting.xml clean package'
-                sh 'cd $PROJECT_NAME && docker build -f Dockerfile -t $REGISTRY/$DOCKERHUB_NAMESPACE/$PROJECT_NAME:SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER .'
-                withCredentials([usernamePassword(passwordVariable : 'DOCKER_PASSWORD' ,usernameVariable : 'DOCKER_USERNAME' ,credentialsId : "$DOCKER_CREDENTIAL_ID" ,)]) {
-                    sh 'echo "$DOCKER_PASSWORD" | docker login $REGISTRY -u "$DOCKER_USERNAME" --password-stdin'
-                    sh 'docker push  $REGISTRY/$DOCKERHUB_NAMESPACE/$PROJECT_NAME:SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER'
+            steps {
+                container ('maven') {
+                    sh 'mvn  -Dmaven.test.skip=true -gs `pwd`/mvn-setting.xml clean package'
+                    sh 'cd $PROJECT_NAME && docker build -f Dockerfile -t $REGISTRY/$DOCKERHUB_NAMESPACE/$PROJECT_NAME:SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER .'
+                    withCredentials([usernamePassword(passwordVariable : 'DOCKER_PASSWORD' ,usernameVariable : 'DOCKER_USERNAME' ,credentialsId : "$DOCKER_CREDENTIAL_ID" ,)]) {
+                        sh 'echo "$DOCKER_PASSWORD" | docker login $REGISTRY -u "$DOCKER_USERNAME" --password-stdin'
+                        sh 'docker push  $REGISTRY/$DOCKERHUB_NAMESPACE/$PROJECT_NAME:SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER'
+                    }
                 }
             }
         }
-    }
+
+    stage('push latest'){
+           when{
+             branch 'master'
+           }
+           steps{
+                container ('maven') {
+                  sh 'docker tag  $REGISTRY/$DOCKERHUB_NAMESPACE/$PROJECT_NAME:SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER $REGISTRY/$DOCKERHUB_NAMESPACE$PROJECT_NAME:latest '
+                  sh 'docker push  $REGISTRY/$DOCKERHUB_NAMESPACE/$PROJECT_NAME:latest '
+                }
+           }
+        }
+
+    stage('deploy to k8s') {
+          steps {
+            input(id: 'deploy-to-dev-$PROJECT_NAME', message: 'deploy to dev?')
+            kubernetesDeploy(configs: '$PROJECT_NAME/deploy/**', enableConfigSubstitution: true, kubeconfigId: "$KUBECONFIG_CREDENTIAL_ID")
+          }
+        }
+
+    stage('push with tag'){
+          when{
+            expression{
+              return params.PROJECT_VERSION =~ /v.*/
+            }
+          }
+          steps {
+              container ('maven') {
+                input(id: 'release-image-with-tag', message: 'release image with tag?')
+                  withCredentials([usernamePassword(credentialsId: "$GITHUB_CREDENTIAL_ID", passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                    sh 'git config --global user.email "zmryanq@hotmail.com" '
+                    sh 'git config --global user.name "HOSTGOV" '
+                    sh 'git tag -a $TAG_NAME -m "$PROJECT_VERSION" '
+                    sh 'git push http://$GIT_USERNAME:$GIT_PASSWORD@github.com/$GITHUB_ACCOUNT/qmall.git --tags --ipv4'
+                  }
+                sh 'docker tag  $REGISTRY/$DOCKERHUB_NAMESPACE/$PROJECT_NAME:SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER $REGISTRY/$DOCKERHUB_NAMESPACE/$PROJECT_NAME:$PROJECT_VERSION '
+                sh 'docker push  $REGISTRY/$DOCKERHUB_NAMESPACE/$PROJECT_NAME:$PROJECT_VERSION '
+              }
+          }
+        }
   }
 
 }
