@@ -32,17 +32,31 @@ pipeline {
         }
       }
     }
-    stage('sonarqube 代码analysis') {
+    stage('sonarqube analysis') {
       steps {
         container ('maven') {
           withCredentials([string(credentialsId: "$SONAR_CREDENTIAL_ID", variable: 'SONAR_TOKEN')]) {
-            sh "mvn sonar:sonar -gs `pwd`/mvn-setting.xml -Dsonar.branch=$BRANCH_NAME -Dsonar.login=$SONAR_TOKEN"
+            withSonarQubeEnv('sonar') {
+             sh "mvn sonar:sonar -gs `pwd`/mvn-settings.xml -Dsonar.login=$SONAR_TOKEN"
+            }
           }
           timeout(time: 1, unit: 'HOURS') {
             waitForQualityGate abortPipeline: true
           }
         }
       }
+    }
+    stage ('build & push') {
+        steps {
+            container ('maven') {
+                sh 'mvn  -Dmaven.test.skip=true -gs `pwd`/mvn-setting.xml clean package'
+                sh 'docker build -f $PROJECT_NAME/Dockerfile -t $REGISTRY/$DOCKERHUB_NAMESPACE/$PROJECT_NAME:SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER .'
+                withCredentials([usernamePassword(passwordVariable : 'DOCKER_PASSWORD' ,usernameVariable : 'DOCKER_USERNAME' ,credentialsId : "$DOCKER_CREDENTIAL_ID" ,)]) {
+                    sh 'echo "$DOCKER_PASSWORD" | docker login $REGISTRY -u "$DOCKER_USERNAME" --password-stdin'
+                    sh 'docker push  $REGISTRY/$DOCKERHUB_NAMESPACE/$PROJECT_NAME:SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER'
+                }
+            }
+        }
     }
   }
 
