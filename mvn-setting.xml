@@ -1,4 +1,8 @@
 <settings>
+    <pluginGroups>
+        <pluginGroup>org.jenkins-ci.tools</pluginGroup>
+        <pluginGroup>org.sonarsource.scanner.maven</pluginGroup>
+    </pluginGroups>
     <mirrors>
         <!-- mirror
          | Specifies a repository mirror site to use instead of a given repository. The repository that
@@ -29,6 +33,11 @@
             <name>Nexus aliyun</name>
             <url>https://maven.aliyun.com/nexus/content/groups/public</url>
         </mirror>
+        <mirror>
+            <id>repo.jenkins-ci.org</id>
+            <url>https://repo.jenkins-ci.org/public/</url>
+            <mirrorOf>m.g.o-public</mirrorOf>
+        </mirror>
         <!-- <mirror>
             <id>repo2</id>
             <mirrorOf>central</mirrorOf>
@@ -56,6 +65,30 @@
                 <maven.compiler.target>1.8</maven.compiler.target>
                 <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
             </properties>
+        </profile>
+        <profile>
+            <id>jenkins</id>
+            <activation>
+                <activeByDefault>true</activeByDefault> <!-- change this to false, if you don't like to have it on per default -->
+            </activation>
+            <repositories>
+                <repository>
+                    <id>repo.jenkins-ci.org</id>
+                    <url>https://repo.jenkins-ci.org/public/</url>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>repo.jenkins-ci.org</id>
+                    <url>https://repo.jenkins-ci.org/public/</url>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+        <profile>
+            <id>sonar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
         </profile>
     </profiles>
 
