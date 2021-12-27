@@ -35,7 +35,7 @@ spring:
     cloud:
         nacos:
             discovery:
-                server-addr: nacos-service.qmall
+                server-addr: nacos-service.qmall:8848
     redis:
         host: redis.qmall
 
