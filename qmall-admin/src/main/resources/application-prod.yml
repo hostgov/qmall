@@ -32,7 +32,12 @@ spring:
                 wall:
                     config:
                         multi-statement-allow: true
-
+    cloud:
+        nacos:
+            discovery:
+                server-addr: nacos-service.qmall:8848
+    redis:
+        host: redis.qmall
 
 ##多数据源的配置
 #dynamic:
