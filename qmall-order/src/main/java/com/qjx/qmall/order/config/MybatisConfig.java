@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableTransactionManagement
-@MapperScan("com.qjx.qmall.member.dao")
+@MapperScan("com.qjx.qmall.order.dao")
 public class MybatisConfig {
 	@Bean
 	public MybatisPlusInterceptor mybatisPlusInterceptor () {
