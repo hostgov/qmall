@@ -13,6 +13,9 @@ import org.springframework.session.web.http.DefaultCookieSerializer;
  */
 @Configuration
 public class QmallSessionConfig {
+
+
+
 	@Bean
 	public CookieSerializer cookieSerializer () {
 		DefaultCookieSerializer cookieSerializer = new DefaultCookieSerializer();
