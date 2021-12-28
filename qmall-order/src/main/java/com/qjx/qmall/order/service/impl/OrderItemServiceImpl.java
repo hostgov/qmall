@@ -7,11 +7,7 @@ import com.qjx.qmall.common.utils.PageUtils;
 import com.qjx.qmall.common.utils.Query;
 import com.qjx.qmall.order.dao.OrderItemDao;
 import com.qjx.qmall.order.entity.OrderItemEntity;
-import com.qjx.qmall.order.entity.OrderReturnReasonEntity;
 import com.qjx.qmall.order.service.OrderItemService;
-import com.rabbitmq.client.Channel;
-import org.springframework.amqp.core.Message;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -24,19 +20,19 @@ public class OrderItemServiceImpl extends ServiceImpl<OrderItemDao, OrderItemEnt
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<OrderItemEntity> page = this.page(
                 new Query<OrderItemEntity>().getPage(params),
-                new QueryWrapper<OrderItemEntity>()
+                new QueryWrapper<>()
         );
 
         return new PageUtils(page);
     }
 
-    @RabbitListener(queues = "Hello-java-queue")
-    public void recieveMessage(Message message,
-                               OrderReturnReasonEntity content,
-                               Channel channel) {
-        message.getBody();
-        message.getMessageProperties();
-        System.out.println("接收到消息:" + message + "内容为:" + content + "通道:" + channel);
-    }
+//    @RabbitListener(queues = "Hello-java-queue")
+//    public void recieveMessage(Message message,
+//                               OrderReturnReasonEntity content,
+//                               Channel channel) {
+//        message.getBody();
+//        message.getMessageProperties();
+//        System.out.println("接收到消息:" + message + "内容为:" + content + "通道:" + channel);
+//    }
 
 }
