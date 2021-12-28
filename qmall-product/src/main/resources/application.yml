@@ -29,6 +29,4 @@ mybatis-plus:
 
 server:
   port: 10000
-logging:
-  level:
-    com.qjx.qmall: debug
+
